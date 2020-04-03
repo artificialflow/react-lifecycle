@@ -1,5 +1,4 @@
 import React from 'react';
-import Option from './Option';
 
 class List extends React.Component {
 	constructor(props) {
@@ -18,11 +17,11 @@ class List extends React.Component {
 		return(
 			<form>
 				<select onChange={this.handleChange} size="6">
-				<option disabled>{ this.props.name }</option>
-				{
-					this.props.list.map(
-						item => <Option key={ item.id } id={ item.id } value={ item.value }/>)
-				}
+					<option disabled>{ this.props.name }</option>
+					{
+						this.props.list.map(item => 
+							<option key={ item.id } id={ item.id }>{ item.value }</option>)
+					}
 				</select>
 			</form>
 		)

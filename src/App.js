@@ -6,7 +6,6 @@ import Edit from './Edit';
 
 const lists = [
 	{
-		id : 1,
 		name : 'Simple list',
 		type : 'read',
 		data : [
@@ -18,7 +17,6 @@ const lists = [
 		]
 	},
 	{
-		id : 2,
 		name : 'My list',
 		type : 'write',
 		data : []
@@ -69,11 +67,14 @@ class App extends React.Component {
 		this.updateId(item.id)
 		this.updateValue(item.value)
 
+		// parse each list
 		let lists = this.state.lists.map(list => list)
 		lists.forEach(list => {
 			if(list.data.filter(listItem => listItem.id == item.id).length === 0) {
+				// push item to list
 				list.data.push(item)
 			} else if(list.type == 'write') {
+				// remove item from list
 				list.data = list.data.filter(listItem => listItem.id != item.id)
 			}
 		})
@@ -89,7 +90,7 @@ class App extends React.Component {
 				<Edit id={ this.state.id } value={ this.state.value } updateValue={ this.updateValue } />
 				{
 					this.state.lists.map(
-						list => <List key={ list.name } id={ list.id } name={ list.name } list={ list.data } clicked = { this.clicked } />)
+						list => <List key={ list.name } name={ list.name } list={ list.data } clicked = { this.clicked } />)
 				}
 			</div>
 		);
